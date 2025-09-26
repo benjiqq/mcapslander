@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCAPS</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+        height: 100%;
+        font-family: 'Arial', sans-serif;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(-45deg, #0a1a3b, #1b2a5a, #0d4fff, #1b2a5a);
+        background-size: 400% 400%;
+        animation: waveGradient 25s ease infinite;
+    }
+
+    @keyframes waveGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 6rem;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-shadow: 0 0 25px rgba(255,255,255,0.3);
+    }
+
+    hr {
+        width: 100px;
+        margin: 20px auto;
+        border: 1px solid rgba(255,255,255,0.5);
+    }
+
+    p {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: rgba(255,255,255,0.8);
+    }
+
+    footer {
+        padding: 20px;
+        background: rgba(0,0,0,0.4);
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    @media(max-width: 600px) {
+        h1 { font-size: 4rem; }
+        p { font-size: 1.2rem; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>MCAPS</h1>
+    <hr>
+    <p>Crypto development service</p>
+</div>
+
+<footer>
+    <a href="portfolio.html">Portfolio</a> | Contact: <a href="https://t.me/benjyqq" target="_blank">Telegram</a>
+</footer>
+
+</body>
+</html>
