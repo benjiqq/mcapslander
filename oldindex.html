@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solana Services Directory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --solana-purple: #9945FF;
+            --solana-green: #14F195;
+            --solana-blue: #00D4FF;
+            --dark-bg: #0F0F0F;
+            --card-bg: #1A1A1A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B3B3B3;
+            --border-color: #333333;
+            --hover-bg: #2A2A2A;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, var(--solana-purple), var(--solana-green));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--solana-purple), var(--solana-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-bar {
+            position: relative;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px 12px 48px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--solana-purple);
+            box-shadow: 0 0 0 3px rgba(153, 69, 255, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        /* Main Content */
+        .main {
+            padding: 40px 0;
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(45deg, var(--solana-purple), var(--solana-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Table Styles */
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .table-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--solana-purple), var(--solana-green));
+        }
+
+        .services-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .services-table th,
+        .services-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .services-table th {
+            background: rgba(153, 69, 255, 0.1);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .services-table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .services-table tbody tr:hover {
+            background: var(--hover-bg);
+            transform: scale(1.01);
+        }
+
+        .services-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .service-link {
+            color: var(--solana-blue);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .service-link:hover {
+            color: var(--solana-green);
+        }
+
+        .price-highlight {
+            color: var(--solana-green);
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            background: rgba(153, 69, 255, 0.1);
+            color: var(--solana-purple);
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .badge.free {
+            background: rgba(20, 241, 149, 0.1);
+            color: var(--solana-green);
+        }
+
+        .badge.no-free {
+            background: rgba(255, 69, 69, 0.1);
+            color: #FF4545;
+        }
+
+        .badge.stream-badge {
+            background: rgba(153, 69, 255, 0.1);
+            color: var(--solana-purple);
+        }
+
+        .badge.submit-badge {
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--solana-blue);
+        }
+
+        .badge.both-badge {
+            background: rgba(20, 241, 149, 0.1);
+            color: var(--solana-green);
+        }
+
+        .empty-cell {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--solana-purple);
+            color: white;
+            border-color: var(--solana-purple);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-table {
+                font-size: 14px;
+            }
+            
+            .services-table th,
+            .services-table td {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .services-table {
+                min-width: 600px;
+            }
+            
+            .services-table th,
+            .services-table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--solana-purple);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h1>Solana Services</h1>
+                </div>
+                <div class="search-bar">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search services..." id="searchInput">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- All Services Section -->
+            <section class="section">
+                <div class="section-header">
+                    <h2 class="section-title">Solana Services Directory</h2>
+                    <p class="section-subtitle">Comprehensive directory of Solana streaming and submission services with pricing and features</p>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All Services</button>
+                    <button class="filter-btn" data-filter="stream">Stream Services</button>
+                    <button class="filter-btn" data-filter="submit">Submit Services</button>
+                    <button class="filter-btn" data-filter="grpc">gRPC Available</button>
+                    <button class="filter-btn" data-filter="free">Free Plan</button>
+                    <button class="filter-btn" data-filter="swqos">SWQOS Available</button>
+                </div>
+
+                <div class="table-container">
+                    <table class="services-table">
+                        <thead>
+                            <tr>
+                                <th><i class="fas fa-server"></i> Provider</th>
+                                <th><i class="fas fa-tags"></i> Type</th>
+                                <th><i class="fas fa-dollar-sign"></i> gRPC Cost</th>
+                                <th><i class="fas fa-database"></i> Shreds Cost</th>
+                                <th><i class="fas fa-image"></i> NFT Cost</th>
+                                <th><i class="fas fa-gift"></i> Free Plan</th>
+                                <th><i class="fas fa-coins"></i> Min Tip</th>
+                                <th><i class="fas fa-tachometer-alt"></i> SWQOS</th>
+                                <th><i class="fas fa-globe"></i> Website</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allServicesTable">
+                            <!-- All services will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Combined data from both service types
+        const allServices = [
+            // Stream Services
+            { name: 'Shreder', type: 'Stream', grpc: '$1000-2000', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'https://shreder.xyz/' },
+            { name: 'Gadly', type: 'Stream', grpc: '', shreds: '', nft: '17 SOL', freePlan: null, minTip: '', swqos: false, website: 'https://gadflynode.com/' },
+            { name: 'Orbitflare', type: 'Stream', grpc: '$499', shreds: '', nft: '22 SOL', freePlan: null, minTip: '', swqos: true, website: 'https://orbitflare.com/' },
+            { name: 'Corvus', type: 'Stream', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'https://x.com/CorvusLabsio' },
+            { name: 'Nexus', type: 'Stream', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: '' },
+            { name: 'Pixel', type: 'Stream', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'https://x.com/pixellabznft' },
+            { name: 'Shyft', type: 'Stream', grpc: '$199', shreds: '', nft: '', freePlan: null, minTip: '', swqos: true, website: 'https://shyft.to/' },
+            { name: 'Urban', type: 'Stream', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'https://urbannode.io/' },
+            { name: 'Helius', type: 'Stream', grpc: '$10,000', shreds: '', nft: '', freePlan: null, minTip: '', swqos: true, website: 'https://www.helius.dev/' },
+            { name: 'Astralane', type: 'Both', grpc: '$499', shreds: '', nft: '', freePlan: true, minTip: '', swqos: true, website: 'https://astralane.gitbook.io/' },
+            { name: '0slot', type: 'Both', grpc: '', shreds: '', nft: '', freePlan: false, minTip: '', swqos: false, website: 'https://0slot.trade/', note: 'Need account' },
+            { name: 'Blockrazor', type: 'Both', grpc: '$500', shreds: '', nft: '', freePlan: true, minTip: '', swqos: false, website: 'https://www.blockrazor.io/' },
+            { name: 'Nextblock', type: 'Both', grpc: '', shreds: '', nft: '', freePlan: true, minTip: '', swqos: false, website: 'https://nextblock.io/' },
+            { name: 'Solanavibe', type: 'Stream', grpc: '$300', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'solanavibestation.com' },
+            { name: 'Jito', type: 'Both', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: true, website: 'jito.wtf' },
+            // Submit-only Services
+            { name: 'Node1', type: 'Submit', grpc: '', shreds: '', nft: '', freePlan: true, minTip: '', swqos: false, website: 'https://node1.me/' },
+            { name: 'Temporal', type: 'Submit', grpc: '', shreds: '', nft: '', freePlan: true, minTip: '', swqos: true, website: 'https://temporal.xyz/' },
+            { name: 'Bloxroute', type: 'Submit', grpc: '', shreds: '', nft: '', freePlan: false, minTip: '', swqos: false, website: 'https://bloxroute.com/' },
+            { name: 'Flashblock', type: 'Submit', grpc: '', shreds: '', nft: '', freePlan: null, minTip: '', swqos: false, website: 'https://flashblock.trade/' }
+        ];
+
+        function createServiceRow(service) {
+            const hasGrpc = service.grpc && service.grpc.trim() !== '';
+            const hasShreds = service.shreds && service.shreds.trim() !== '';
+            const hasNft = service.nft && service.nft.trim() !== '';
+            const hasFreePlan = service.freePlan === true;
+            const noFreePlan = service.freePlan === false;
+            const hasSwqos = service.swqos === true;
+            
+            // Determine service type badge color
+            let typeBadgeClass = 'badge';
+            if (service.type === 'Stream') typeBadgeClass += ' stream-badge';
+            else if (service.type === 'Submit') typeBadgeClass += ' submit-badge';
+            else if (service.type === 'Both') typeBadgeClass += ' both-badge';
+            
+            return `
+                <tr data-service="${service.name.toLowerCase()}" 
+                    data-type="${service.type.toLowerCase()}" 
+                    data-grpc="${hasGrpc}" 
+                    data-shreds="${hasShreds}" 
+                    data-nft="${hasNft}" 
+                    data-free="${hasFreePlan}"
+                    data-swqos="${hasSwqos}">
+                    <td>
+                        <div class="service-name">${service.name}</div>
+                        ${service.note ? `<div style="font-size: 12px; color: var(--text-secondary); margin-top: 4px;"><i class="fas fa-info-circle"></i> ${service.note}</div>` : ''}
+                    </td>
+                    <td>
+                        <span class="${typeBadgeClass}">${service.type}</span>
+                    </td>
+                    <td>
+                        ${hasGrpc ? `<span class="price-highlight">${service.grpc}</span>` : '<span class="empty-cell">-</span>'}
+                    </td>
+                    <td>
+                        ${hasShreds ? `<span class="price-highlight">${service.shreds}</span>` : '<span class="empty-cell">-</span>'}
+                    </td>
+                    <td>
+                        ${hasNft ? `<span class="price-highlight">${service.nft}</span>` : '<span class="empty-cell">-</span>'}
+                    </td>
+                    <td>
+                        ${hasFreePlan ? '<span class="badge free"><i class="fas fa-check"></i> Yes</span>' : 
+                          noFreePlan ? '<span class="badge no-free"><i class="fas fa-times"></i> No</span>' : 
+                          '<span class="empty-cell">-</span>'}
+                    </td>
+                    <td>
+                        ${service.minTip && service.minTip.trim() !== '' ? `<span class="price-highlight">${service.minTip}</span>` : '<span class="empty-cell">-</span>'}
+                    </td>
+                    <td>
+                        ${hasSwqos ? '<span class="badge free"><i class="fas fa-check"></i> Yes</span>' : '<span class="badge no-free"><i class="fas fa-times"></i> No</span>'}
+                    </td>
+                    <td>
+                        ${service.website ? `<a href="${service.website}" target="_blank" class="service-link">${service.website.replace(/^https?:\/\//, '')} <i class="fas fa-external-link-alt"></i></a>` : '<span class="empty-cell">-</span>'}
+                    </td>
+                </tr>
+            `;
+        }
+
+        function renderAllServices(services = allServices) {
+            const container = document.getElementById('allServicesTable');
+            container.innerHTML = services.map(createServiceRow).join('');
+        }
+
+        function setupFilters() {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const filter = e.target.dataset.filter;
+                    const section = e.target.closest('.section');
+                    
+                    // Update active button
+                    section.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    
+                    // Filter rows
+                    const rows = document.querySelectorAll('#allServicesTable tr');
+                    rows.forEach(row => {
+                        let show = false;
+                        
+                        if (filter === 'all') {
+                            show = true;
+                        } else if (filter === 'stream') {
+                            show = row.dataset.type === 'stream' || row.dataset.type === 'both';
+                        } else if (filter === 'submit') {
+                            show = row.dataset.type === 'submit' || row.dataset.type === 'both';
+                        } else if (filter === 'grpc') {
+                            show = row.dataset.grpc === 'true';
+                        } else if (filter === 'free') {
+                            show = row.dataset.free === 'true';
+                        } else if (filter === 'swqos') {
+                            show = row.dataset.swqos === 'true';
+                        }
+                        
+                        row.style.display = show ? '' : 'none';
+                    });
+                });
+            });
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('searchInput');
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                document.querySelectorAll('#allServicesTable tr').forEach(row => {
+                    const serviceName = row.dataset.service;
+                    const rowText = row.textContent.toLowerCase();
+                    const show = serviceName.includes(query) || rowText.includes(query);
+                    row.style.display = show ? '' : 'none';
+                });
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAllServices();
+            setupFilters();
+            setupSearch();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+Stream services	provider	grpc cost per month USD	shreds per month USD	NFT	website
+	shreder		1000-2000$		https://shreder.xyz/
+	Gadly			17 SOL	https://gadflynode.com/
+	Orbitflare	499$		22 SOL	https://orbitflare.com/
+	Corvus				https://x.com/CorvusLabsio
+	Nexus				
+	Pixel				https://x.com/pixellabznft
+	Shyft	199$			https://shyft.to/
+	urban				https://urbannode.io/
+	helius 		$10,000		https://www.helius.dev/
+	astralane		$499		https://astralane.gitbook.io/
+	0slot - need account				https://0slot.trade/
+	blockrazor		$500		https://www.blockrazor.io/
+	nextblock				https://nextblock.io/
+	Solanavibe		$300		solanavibestation.com
+	Jito				
+					
+Submit services		Free plan	min tip		
+	Astralane	yes			https://astralane.gitbook.io/
+	0slot	no			https://0slot.trade/
+	blockrazor	yes			https://www.blockrazor.io/
+	Nextblock	yes			nextblock.io
+	node1	yes			https://node1.me/
+	Temporal	yes			https://temporal.xyz/
+	bloxroute	no			https://bloxroute.com/
+	Flashblock				https://flashblock.trade/
+	Jito				jito.wtf
